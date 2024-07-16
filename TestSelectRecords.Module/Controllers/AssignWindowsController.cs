@@ -33,7 +33,7 @@ namespace TestSelectRecords.Module.Controllers
         private void deleteSelectedAction_Execute(object sender, SimpleActionExecuteEventArgs e)
         {
             var currentObject = (AssignWindowsDC)View.CurrentObject;
-            ListPropertyEditor listPropertyEditor = View.FindItem(nameof(AssignWindowsDC.PrzypisaniPracownicy)) as ListPropertyEditor;
+            ListPropertyEditor listPropertyEditor = View.FindItem(nameof(AssignWindowsDC.AssignedUsers)) as ListPropertyEditor;
             if (listPropertyEditor != null)
             {
                 ListView nestedListView = listPropertyEditor.ListView;
@@ -43,7 +43,7 @@ namespace TestSelectRecords.Module.Controllers
                     var selectedRecords = nestedListView.SelectedObjects.Cast<UsersDC>().ToList();
                     foreach (var record in selectedRecords)
                     {
-                        currentObject.PrzypisaniPracownicy.Remove(record);
+                        currentObject.AssignedUsers.Remove(record);
                     }
                 }
             }
@@ -54,7 +54,7 @@ namespace TestSelectRecords.Module.Controllers
             // Execute your business logic (https://docs.devexpress.com/eXpressAppFramework/112737/).
             // Access the nested ListView
             var currentObject = (AssignWindowsDC)View.CurrentObject;
-            ListPropertyEditor listPropertyEditor = View.FindItem(nameof(AssignWindowsDC.DostepniPracownicy)) as ListPropertyEditor;
+            ListPropertyEditor listPropertyEditor = View.FindItem(nameof(AssignWindowsDC.AvaiableUsers)) as ListPropertyEditor;
             if (listPropertyEditor != null)
             {
                 ListView nestedListView = listPropertyEditor.ListView;
@@ -65,7 +65,7 @@ namespace TestSelectRecords.Module.Controllers
                     foreach (var record in selectedRecords)
                     {
 
-                        currentObject.PrzypisaniPracownicy.Add(record);
+                        currentObject.AssignedUsers.Add(record);
                     }
                 }
             }

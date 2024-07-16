@@ -8,7 +8,7 @@ using TestSelectRecords.Module.BusinessObjects;
 
 namespace TestSelectRecords.Module.Controllers
 {
-    public class CustomerController : ObjectViewController<ListView, Customer>
+    public class CustomerController : ObjectViewController<DetailView, Customer>
     {
         PopupWindowShowAction assignUsersToCustomerAction;
         public CustomerController() : base()
@@ -29,20 +29,33 @@ namespace TestSelectRecords.Module.Controllers
 
             var objectSpace = (NonPersistentObjectSpace)e.Application.CreateObjectSpace(typeof(AssignWindowsDC));
             var prompt = objectSpace.CreateObject<AssignWindowsDC>();
-            CopyUsers(objectSpace, prompt.DostepniPracownicy);
+            CopyAllUsers(objectSpace, prompt.AvaiableUsers);
+            CopyAssignedUsers(objectSpace, prompt.AssignedUsers);
             e.View = e.Application.CreateDetailView(objectSpace, prompt);
         }
 
 
-        private void CopyUsers(IObjectSpace objectSpace, BindingList<UsersDC> przypisaniPracownicy)
+        private void CopyAllUsers(IObjectSpace objectSpace, BindingList<UsersDC> users)
         {
-            var users = objectSpace.GetObjectsQuery<ApplicationUser>(); //.Where(u => u.IsActive);
-            foreach (var user in users)
+            var allUsers = objectSpace.GetObjectsQuery<ApplicationUser>(); //.Where(u => u.IsActive);
+            foreach (var user in allUsers)
             {
                 var item = objectSpace.CreateObject<UsersDC>();
                 item.Oid = user.Oid;
                 item.Name = user.UserName;
-                przypisaniPracownicy.Add(item);
+                users.Add(item);
+            }
+        }
+
+        private void CopyAssignedUsers(IObjectSpace objectSpace, BindingList<UsersDC> users)
+        {
+
+            foreach (var user in ViewCurrentObject.ApplicationUsers)
+            {
+                var item = objectSpace.CreateObject<UsersDC>();
+                item.Oid = user.Oid;
+                item.Name = user.UserName;
+                users.Add(item);
             }
         }
 
@@ -56,7 +69,32 @@ namespace TestSelectRecords.Module.Controllers
             var prompt = e.PopupWindowView.CurrentObject as AssignWindowsDC;
             if (prompt != null)
             {
-                foreach (var item in prompt.PrzypisaniPracownicy)
+
+
+                //delete not selected  users
+                //foreach (var user in ViewCurrentObject.ApplicationUsers)
+                //{
+                //    if (!prompt.AssignedUsers.Any(u => u.Oid == user.Oid))
+                //    {
+                //        ViewCurrentObject.ApplicationUsers.Remove(user);
+                //    }
+                //}
+
+                //  ViewCurrentObject.ApplicationUsers.RemoveAll(user => !prompt.AssignedUsers.Any(u => u.Oid == user.Oid));
+
+
+                // Delete not selected users
+                var usersToRemove = ViewCurrentObject.ApplicationUsers
+                                    .Where(user => !prompt.AssignedUsers.Any(u => u.Oid == user.Oid))
+                                    .ToList();
+
+                foreach (var user in usersToRemove)
+                {
+                    ViewCurrentObject.ApplicationUsers.Remove(user);
+                }
+
+                // assign selected users
+                foreach (var item in prompt.AssignedUsers)
                 {
                     var user = ObjectSpace.GetObjectByKey<ApplicationUser>(item.Oid);
                     if (user != null)
@@ -66,6 +104,7 @@ namespace TestSelectRecords.Module.Controllers
                 }
             }
             ObjectSpace.CommitChanges();
+            View.Refresh();
         }
 
         protected override void OnActivated()

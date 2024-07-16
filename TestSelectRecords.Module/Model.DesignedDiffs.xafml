@@ -19,9 +19,9 @@
       </Items>
       <Layout>
         <LayoutGroup Id="Main" RelativeSize="100" Direction="Horizontal">
-          <LayoutItem Id="DostepniPracownicy" ViewItem="DostepniPracownicy" Index="0" RelativeSize="50" IsNewNode="True" />
-          <LayoutItem Id="Akcje" ViewItem="Akcje" Index="1" RelativeSize="13.466550825369245" IsNewNode="True" />
-          <LayoutItem Id="PrzypisaniPracownicy" ViewItem="PrzypisaniPracownicy" Index="2" RelativeSize="36.53344917463075" IsNewNode="True" />
+          <LayoutItem Id="AvaiableUsers" ViewItem="AvaiableUsers" Index="0" RelativeSize="33.333333333333336" IsNewNode="True" />
+          <LayoutItem Id="Akcje" ViewItem="Akcje" Index="1" RelativeSize="13.316151202749142" IsNewNode="True" />
+          <LayoutItem Id="AssignedUsers" ViewItem="AssignedUsers" Index="2" RelativeSize="53.350515463917525" IsNewNode="True" />
           <TabbedGroup Id="Tabs" Index="2" RelativeSize="95.12061403508773" Removed="True">
             <LayoutGroup Id="DostepniPracownicy" RelativeSize="0" Caption="Wybierz zastępców" Direction="Horizontal">
               <LayoutItem Id="DostepniPracownicy" RelativeSize="100" Removed="True" />

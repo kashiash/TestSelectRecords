@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="AssignWindowsDC_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutItem Id="PrzypisaniPracownicy" ViewItem="PrzypisaniPracownicy" />
+          <LayoutItem Id="DostepniPracownicy" ViewItem="DostepniPracownicy" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>
