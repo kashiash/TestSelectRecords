@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="TestSelectRecords">
+  <BOModel>
+    <Class Name="DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser" Caption="Base User" />
+  </BOModel>
+  <Options>
+    <LayoutManagerOptions RequiredFieldMark="*" />
+  </Options>
+  <SchemaModules>
+    <SchemaModule Name="CloneObjectModule" Version="24.1.3.0" IsNewNode="True" />
+    <SchemaModule Name="SchedulerModuleBase" Version="24.1.3.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="24.1.3.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <ListView Id="ApplicationUser_ListView" Caption="Users" />
+    <DetailView Id="AssignWindowsDC_DetailView">
+      <Items>
+        <ActionContainerViewItem Id="Akcje" PaintStyle="CaptionAndImage" ActionContainer="CustomActionContainer" Orientation="Vertical" Caption="Akcje" IsNewNode="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100" Direction="Horizontal">
+          <LayoutItem Id="DostepniPracownicy" ViewItem="DostepniPracownicy" Index="0" RelativeSize="50" IsNewNode="True" />
+          <LayoutItem Id="Akcje" ViewItem="Akcje" Index="1" RelativeSize="13.466550825369245" IsNewNode="True" />
+          <LayoutItem Id="PrzypisaniPracownicy" ViewItem="PrzypisaniPracownicy" Index="2" RelativeSize="36.53344917463075" IsNewNode="True" />
+          <TabbedGroup Id="Tabs" Index="2" RelativeSize="95.12061403508773" Removed="True">
+            <LayoutGroup Id="DostepniPracownicy" RelativeSize="0" Caption="Wybierz zastępców" Direction="Horizontal">
+              <LayoutItem Id="DostepniPracownicy" RelativeSize="100" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="PrzypisaniPracownicy" RelativeSize="0" Caption="Wybrani zastępcy" Direction="Horizontal">
+              <LayoutItem Id="PrzypisaniPracownicy" RelativeSize="100" Removed="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

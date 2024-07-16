@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="AssignWindowsDC_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100">
+            <LayoutGroup Id="AssignWindowsDC" Direction="Horizontal" RelativeSize="100" Caption="Name">
+              <LayoutItem Id="PrzypisaniPracownicy" ViewItem="PrzypisaniPracownicy" Index="0" RelativeSize="33.333333333333336" />
+              <LayoutGroup Id="Auto94dc75e5-775f-49b5-8dc8-ce8bc385ad17" ShowCaption="False" Caption="" Index="1" RelativeSize="13.472403302911777">
+                <LayoutItem Id="Item2" Index="0" RelativeSize="33.333333333333336" />
+                <LayoutItem Id="Akcje" ViewItem="Akcje" Index="1" RelativeSize="2.6315789473684212" />
+                <LayoutItem Id="Item3" Index="2" RelativeSize="64.03508771929825" />
+              </LayoutGroup>
+              <LayoutItem Id="DostepniPracownicy" ViewItem="DostepniPracownicy" Index="2" RelativeSize="53.19426336375489" />
+              <LayoutItem Id="Name" RelativeSize="50" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>
