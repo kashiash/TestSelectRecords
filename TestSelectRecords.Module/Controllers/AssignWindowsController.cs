@@ -40,7 +40,7 @@ namespace TestSelectRecords.Module.Controllers
                 if (nestedListView != null)
                 {
                     // Get selected records
-                    var selectedRecords = nestedListView.SelectedObjects.Cast<ApplicationUser>().ToList();
+                    var selectedRecords = nestedListView.SelectedObjects.Cast<UsersDC>().ToList();
                     foreach (var record in selectedRecords)
                     {
                         currentObject.PrzypisaniPracownicy.Remove(record);
@@ -61,9 +61,10 @@ namespace TestSelectRecords.Module.Controllers
                 if (nestedListView != null)
                 {
                     // Get selected records
-                    var selectedRecords = nestedListView.SelectedObjects.Cast<ApplicationUser>().ToList();
+                    var selectedRecords = nestedListView.SelectedObjects.Cast<UsersDC>().ToList();
                     foreach (var record in selectedRecords)
                     {
+
                         currentObject.PrzypisaniPracownicy.Add(record);
                     }
                 }

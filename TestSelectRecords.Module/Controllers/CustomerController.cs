@@ -34,12 +34,15 @@ namespace TestSelectRecords.Module.Controllers
         }
 
 
-        private void CopyUsers(IObjectSpace objectSpace, BindingList<ApplicationUser> przypisaniPracownicy)
+        private void CopyUsers(IObjectSpace objectSpace, BindingList<UsersDC> przypisaniPracownicy)
         {
             var users = objectSpace.GetObjectsQuery<ApplicationUser>(); //.Where(u => u.IsActive);
             foreach (var user in users)
             {
-                przypisaniPracownicy.Add(user);
+                var item = objectSpace.CreateObject<UsersDC>();
+                item.Oid = user.Oid;
+                item.Name = user.UserName;
+                przypisaniPracownicy.Add(item);
             }
         }
 
@@ -48,6 +51,21 @@ namespace TestSelectRecords.Module.Controllers
             var selectedPopupWindowObjects = e.PopupWindowViewSelectedObjects;
             var selectedSourceViewObjects = e.SelectedObjects;
             // Execute your business logic (https://docs.devexpress.com/eXpressAppFramework/112723/).
+            ///  var customer = (Customer)View.CurrentObject; // not necessary because we have ViewCurrentObject
+
+            var prompt = e.PopupWindowView.CurrentObject as AssignWindowsDC;
+            if (prompt != null)
+            {
+                foreach (var item in prompt.PrzypisaniPracownicy)
+                {
+                    var user = ObjectSpace.GetObjectByKey<ApplicationUser>(item.Oid);
+                    if (user != null)
+                    {
+                        ViewCurrentObject.ApplicationUsers.Add(user);
+                    }
+                }
+            }
+            ObjectSpace.CommitChanges();
         }
 
         protected override void OnActivated()

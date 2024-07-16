@@ -12,16 +12,16 @@ namespace TestSelectRecords.Module.Controllers
     {
         public AssignWindowsDC()
         {
-            DostepniPracownicy = new BindingList<ApplicationUser>();
-            PrzypisaniPracownicy = new BindingList<ApplicationUser>();
+            DostepniPracownicy = new BindingList<UsersDC>();
+            PrzypisaniPracownicy = new BindingList<UsersDC>();
         }
 
 
         [XafDisplayName("Wybierz zastępców")]
-        public BindingList<ApplicationUser> DostepniPracownicy { get; set; }
+        public BindingList<UsersDC> DostepniPracownicy { get; set; }
 
         [XafDisplayName("Wybrani zastępcy")]
-        public BindingList<ApplicationUser> PrzypisaniPracownicy { get; set; }
+        public BindingList<UsersDC> PrzypisaniPracownicy { get; set; }
     }
 
 }
